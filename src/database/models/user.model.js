@@ -1,5 +1,7 @@
 /**
  * User: bhagyashributada
+ *
+ * This module exposes user schema and range of methods to fetch data from mongodb server
  */
 
 

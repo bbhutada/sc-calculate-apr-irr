@@ -1,5 +1,7 @@
 /**
  * User: bhagyashributada
+ *
+ * This module is the middleware which exposes "sign" & "verify" methods of jsonwebtoken
  */
 
 const
@@ -11,10 +13,21 @@ const
     verifyProm = promisify( verify ),
     signProm = promisify( sign );
 
+/**
+ * This method verifies the provided token using secret
+ * @param token
+ * @returns {Promise<*>}
+ */
 function verifyToken( token ) {
     return verifyProm( token, secret )
 }
 
+/**
+ * This method uses username & password
+ * @param username
+ * @param password
+ * @returns {Promise<*>}
+ */
 function signToken( username, password ) {
     return signProm( {username, password}, secret, {expiresIn} );
 }

@@ -1,8 +1,23 @@
 /**
  * User: bhagyashributada
+ *
+ * This module exposes methods connected to /aprIrrCalculatorApi REST end points
+ *
+ *  Functional Programming approach is used.
  */
 
-
+/**
+ * This method return a json object with welcome message and end points
+ * GET end point : <base_url>/aprIrrCalculatorApi
+ * Sample response object is as follows:
+ * {
+ *  message: '<b>Hello,</b> Welcome to APR & IRR Calculator',
+ *  toGetJwtToken: '<host>/mortgageCalculation/requestAuthToken',
+ *  toCalculateAprAndIrr: '<host>/mortgageCalculation/getAprIrrValues'
+ *  }
+ * @param req {object} req Express request object
+ * @param res {object} res Express response object
+ */
 function sendWelcomeMessage( req, res ) {
 
     const
@@ -86,10 +101,20 @@ function getIRR( cashFlowObj ) {
 }
 
 /**
+ * This method receives cashFlow.json as req.body. APR & IRR values are calculated and returned for this cashflow.
+ * APR:
  * Formula used APR = ((Fees+Interest)/Principal*n)*365*100
  * {@link https://www.investopedia.com/terms/a/apr.asp}
+ *
+ * IRR:
+ * It is calculates using npm library called as financejs
+ *
+ * POST end point : <base_url>/aprIrrCalculatorApi/calculateAprIrrValues
+ * Sample response object:  is as follows: { apr: 22.55, irr: 0.0335 }
+ *
+ * @param req {object} req Express request object
+ * @param res {object} res Express response object
  */
-
 function calculateAprIrrValues( req, res ) {
 
     const pipeline = ( ...fns ) => ( jsonObj ) => fns.reduce( ( acc, fn ) => {

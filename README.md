@@ -56,7 +56,7 @@ Note: In ideal senario, frontend can be built using appropriate javascript libra
   * request body 'username' & 'password'.
   * This method generates the token for the given user and saves the user details with token in database. If the user already exists than only token is updated.
   * An example output response is as follows: 
-  ```{ message:'Authentication token is generated for username => Employee:<br>', token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2Vybm ......'```
+  ```{ message:'Authentication token is generated for username => Employee:<br>', token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2Vybm ......}'```
   
 ### POST /aprIrrCalculatorApi/calculateAprIrrValues
   * request body = cashFlow.json ( Provided )

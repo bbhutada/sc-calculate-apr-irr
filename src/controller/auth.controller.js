@@ -7,6 +7,18 @@ const
     {findUserAndUpdate} = require( '../database/models/user.model' ),
     {signToken} = require( '../middleware' );
 
+/**
+ *
+ * This method generates the JWT token using the payload provided by the user ( username & password ). It uses "sign"
+ * method of 'jsonwebtoken' npm library to sign the payload.
+ *
+ * POST endpoint  /aprIrrCalculatorApi/requestAuthToken
+ * Sample response object: { message:'Authentication token is generated for username => ${username} <br>', token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2Vybm ......'}
+ *
+ * @param {object} req.body { username, password }
+ * @param req {object} req Express request object
+ * @param res {object} res Express response object. (It returns JSON object of message and jwt token)
+ */
 async function generateJwtToken( req, res ) {
 
     let
@@ -39,7 +51,7 @@ async function generateJwtToken( req, res ) {
     console.log( `Token is generated for the "${result.username}" and saved in database` );
 
     //---------------------------- Send the Response -------------------------------------------------------------------
-    res.json( {message: `Authentication token is generated for username => ${username}:<br>`, token: token} );
+    res.json( {message: `Authentication token is generated for username => ${username}<br>`, token: token} );
 }
 
 module.exports = {
