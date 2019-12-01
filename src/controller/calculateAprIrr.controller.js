@@ -9,7 +9,7 @@ function sendWelcomeMessage( req, res ) {
         welcomeMsg = {
             message: `<b>Hello,</b> Welcome to APR & IRR Calculator`,
             toGetJwtToken: `<host>/mortgageCalculation/requestAuthToken`,
-            toCalculateAprAndIrr: `<host>/mortgageCalculation/getAprIrrValues`
+            toCalculateAprAndIrr: `<host>/mortgageCalculation/calculateAprIrrValues`
         };
     res.json( welcomeMsg );
 }
@@ -81,7 +81,7 @@ function getIRR( cashFlowObj ) {
         cashFlows = schedule.map( o => o.interestFee + o.principal ),
         irr = financeObj.IRR( -(principal - totalFeesPaid), ...cashFlows ) / 100;
 
-    return {apr: apr.toFixed( 2 ), irr: irr.toFixed( 10 )};
+    return {apr: +apr.toFixed( 2 ), irr: +irr.toFixed( 10 )};
 
 }
 

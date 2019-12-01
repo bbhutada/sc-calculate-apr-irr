@@ -15,6 +15,6 @@ router.get( '/', [sendWelcomeMessage] );
 
 router.post( '/requestAuthToken', [generateJwtToken] );
 
-router.post( '/getAprIrrValues', [verifyJwtToken, calculateAprIrrValues] );
+router.post( '/calculateAprIrrValues', [verifyJwtToken, calculateAprIrrValues] );
 
 module.exports = router;

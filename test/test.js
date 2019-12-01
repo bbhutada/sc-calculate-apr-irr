@@ -8,7 +8,7 @@ const
     {httpServer} = require( '../src/config' ),
     apiUrl = '/aprIrrCalculatorApi',
     requestAuthTokenUrl = `${apiUrl}/requestAuthToken`,
-    aprIrrCalculatorUrl = `${apiUrl}/getAprIrrValues`,
+    aprIrrCalculatorUrl = `${apiUrl}/calculateAprIrrValues`,
     userDetails = {username: 'Employee', password: 'Password@123'};
 
 describe( `Integration tests`, function() {
@@ -66,7 +66,7 @@ describe( `Integration tests`, function() {
             .end( done );
     } );
 
-    it( `POST: ${aprIrrCalculatorUrl} should successfully calculate 'apr' and 'irr' is JWT token is set on header`, function( done ) {
+    it( `POST: ${aprIrrCalculatorUrl} should successfully calculate 'apr': 22.55 and 'irr': 0.0335 is JWT token is set on header`, function( done ) {
         request( `http://localhost:${httpServer.port}` )
             .post( `${aprIrrCalculatorUrl}` )
             .send( cashFlowData )
@@ -79,6 +79,8 @@ describe( `Integration tests`, function() {
                 }
                 expect( response.body ).to.be.a( 'object' );
                 expect( response.body ).to.have.all.keys( 'apr', 'irr' );
+                expect( response.body.apr ).to.equal(22.55);
+                expect (response.body.irr).to.equal(0.0335);
                 done();
             } );
     } );
